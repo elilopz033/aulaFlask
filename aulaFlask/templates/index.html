@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tablón de tareas</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+<body>
+<main>
+    <h1>Tablón de tareas</h1>
+    <p><a href="{{ url_for('nueva') }}">Añadir una tarea</a></p>
+    {% if tareas %}
+    <ul>
+        {% for tarea in tareas %}
+        <li>
+            {{ tarea["titulo"] }}
+            {% if tarea["prioridad"] == "alta" %}
+            <strong>Prioridad alta</strong>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No hay tareas pendientes.</p>
+    {% endif %}
+</main>
+</body>
+</html>

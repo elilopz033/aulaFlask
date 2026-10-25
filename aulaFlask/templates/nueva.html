@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Añadir una tarea</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+<body>
+<main>
+    <h1>Añadir una tarea</h1>
+    {% if error %}
+    <p class="error" role="alert">{{ error }}</p>
+    {% endif %}
+    <form action="{{ url_for('nueva') }}" method="post">
+        <label for="titulo">Título de la tarea</label>
+        <input id="titulo" name="titulo" type="text"
+               value="{{ titulo }}" required
+               minlength="3" maxlength="80">
+        <label for="prioridad">Prioridad</label>
+        <select id="prioridad" name="prioridad">
+            <option value="normal"
+                    {% if prioridad == "normal" %}selected{% endif %}>
+            Normal
+            </option>
+            <option value="alta"
+                    {% if prioridad == "alta" %}selected{% endif %}>
+            Alta
+            </option>
+        </select>
+        <button type="submit">Guardar tarea</button>
+    </form>
+    <p><a href="{{ url_for('inicio') }}">Volver al tablón</a></p>
+</main>
+</body>
+</html>
